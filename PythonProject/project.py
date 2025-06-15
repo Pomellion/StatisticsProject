@@ -70,7 +70,7 @@ def mean_confidence_interval(data, confidence=0.95):
     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n - 1)  # margin of error
     print(m, m - h, m + h)  # print mean, lower, upper
 
-
+print("Mean confidence interval is:")
 mean_confidence_interval(salary_list, 0.95)
 
 # === VARIANCE CONFIDENCE INTERVAL FUNCTION ===
@@ -89,15 +89,15 @@ def variance_confidence_interval(data, confidence=0.95):
 
     print(f"{ci_lower_bound=}, {ci_upper_bound}")
 
-
+print("Variance confidence interval is:")
 variance_confidence_interval(salary_list, 0.95)
 
 
 # === SAMPLE SIZE ESTIMATION FUNCTION ===
 def sampleSize(
         population_size,
-        margin_error=.01,
-        confidence_level=0.90,
+        margin_error=0.01,
+        confidence_level=0.95,
         sigma=1 / 2
 ):
     # Estimate required sample size for a given population size, margin of error,
@@ -129,7 +129,8 @@ def sampleSize(
     numerator = z ** 2 * sigma ** 2 * (N / (N - 1))
     denom = M ** 2 + ((z ** 2 * sigma ** 2) / (N - 1))
     return numerator / denom
-
+print("Sample size is: ")
+print(sampleSize(len(salary_list)))
 
 # === HYPOTHESIS TESTING ===
 # Define null and alternative hypotheses
@@ -151,7 +152,7 @@ print("H1:", H1)
 print("Test statistic:", t_stat)
 print("p-value:", p_value)
 
-# Make decision based on significance level (Î± = 0.05)
+# Make decision based on significance level (a = 0.05)
 if p_value < 0.05:
     print("Reject the null hypothesis.")
     print("Conclusion: There is significant evidence that the average salary is greater than $100,000.")
